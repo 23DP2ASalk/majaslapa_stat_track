@@ -1,117 +1,456 @@
-<!DOCTYPE html>
-<html lang="lv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StatsPro - Universāls Sporta Statistikas Apkopotājs</title>
-    <link rel="stylesheet" href="src/css/styles.css">
-</head>
-<body>
-    <header>
-        <div class="header-container">
-            <div class="logo">Stats Tracker</div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home">Sākums</a></li>
-                    <li><a href="#about">Par mums</a></li>
-                    <li class="dropdown">
-                        <a href="#services">Pakalpojumi ▼</a>
-                        <div class="dropdown-content">
-                            <a href="#stats">Statistikas ievadīšana</a>
-                            <a href="#analysis">Datu analīze</a>
-                            <a href="#reports">Atskaites</a>
-                            <a href="#export">Datu eksports</a>
-                        </div>
-                    </li>
-                    <li><a href="#contact">Kontakti</a></li>
-                </ul>
-                <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌓</button>
-                <div class="hamburger" onclick="toggleMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <main>
-        <section class="hero" id="home">
-            <h1>Universāls Sporta Statistikas Apkopotājs</h1>
-            <p>Profesionāla platforma spēļu statistikas ievadīšanai, uzglabāšanai un analīzei. Vienkārši, ātri un efektīvi!</p>
-        </section>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --bg-color: #f9fafb;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
 
-        <div class="cards-container">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400" alt="Basketbols" class="card-image">
-                <div class="card-content">
-                    <h3>🏀 Basketbols</h3>
-                    <p>Ievadiet un analizējiet basketbola spēļu statistiku: punkti, piespēles, atlēkušās bumbas, bloķējumi un vairāk.</p>
-                    <button class="card-btn" onclick="openModal('Basketbols')">Uzzināt vairāk</button>
-                </div>
-            </div>
+        body.dark-mode {
+            --primary-color: #3b82f6;
+            --secondary-color: #60a5fa;
+            --accent-color: #2563eb;
+            --text-color: #f9fafb;
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+        }
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400" alt="Futbols" class="card-image">
-                <div class="card-content">
-                    <h3>⚽ Futbols</h3>
-                    <p>Uzglabājiet futbola spēļu datus: vārti, piespēles, precizitāte, aizsardzības darbības un komandas statistika.</p>
-                    <button class="card-btn" onclick="openModal('Futbols')">Uzzināt vairāk</button>
-                </div>
-            </div>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=400" alt="Volejbols" class="card-image">
-                <div class="card-content">
-                    <h3>🏐 Volejbols</h3>
-                    <p>Reģistrējiet volejbola statistiku: servēšana, uzbrukumi, bloķi, uzkritieni un seta rezultāti.</p>
-                    <button class="card-btn" onclick="openModal('Volejbols')">Uzzināt vairāk</button>
-                </div>
-            </div>
-        </div>
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-        <aside>
-            <h2>📈 Jaunākie raksti</h2>
-            <ul>
-                <li>Kā efektīvi analizēt basketbola statistiku</li>
-                <li>SQL datubāzes optimizācija sporta datiem</li>
-                <li>Top 10 statistikas rādītāji futbolā</li>
-                <li>Kā izveidot profesionālas sporta atskaites</li>
-                <li>Datu vizualizācija sporta analītikā</li>
-            </ul>
-        </aside>
-    </main>
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    <footer id="contact">
-        <div class="footer-content">
-            <p>&copy; 2025 Stats Tracker - Universāls Sporta Statistikas Apkopotājs</p>
-            <p>Visi dati tiek droši uzglabāti SQL datubāzēs</p>
-            <div class="social-links">
-                <a href="#" title="Facebook">📘</a>
-                <a href="#" title="Twitter">🐦</a>
-                <a href="#" title="Instagram">📷</a>
-                <a href="#" title="LinkedIn">💼</a>
-            </div>
-        </div>
-    </footer>
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modal-title"></h2>
-            <p id="modal-text"></p>
-            <img id="modal-img" src="" alt="" style="width: 100%; border-radius: 10px; margin: 1rem 0;">
-            <p>Šī platforma ļauj jums:</p>
-            <ul style="margin-left: 2rem; margin-top: 1rem;">
-                <li>✓ Ievadīt detalizētu spēļu statistiku</li>
-                <li>✓ Uzglabāt datus drošās SQL datubāzēs</li>
-                <li>✓ Analizēt sniegumu ar vizualizācijām</li>
-                <li>✓ Eksportēt atskaites dažādos formātos</li>
-                <li>✓ Salīdzināt spēlētāju statistiku</li>
-            </ul>
-        </div>
-    </div>
+        .logo::before {
+            content: "📊";
+            font-size: 2rem;
+        }
 
-    <script src="src/js/script.js"></script>
-</body>
-</html>
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--card-bg);
+            min-width: 200px;
+            box-shadow: var(--shadow-hover);
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 1rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.1);
+            animation: zoomIn 0.5s ease;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .card-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+
+        /* Aside */
+        aside {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        aside h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        aside ul {
+            list-style: none;
+        }
+
+        aside ul li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        aside ul li:hover {
+            padding-left: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--card-bg);
+            max-width: 600px;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-hover);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--card-bg);
+                width: 100%;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links a {
+                color: var(--text-color);
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        } 
