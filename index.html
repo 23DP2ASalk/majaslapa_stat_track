@@ -3,73 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sporta Statistikas Trekeris</title>
+    <title>StatsPro - Universāls Sporta Statistikas Apkopotājs</title>
     <link rel="stylesheet" href="src/css/styles.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Stat Tracker</h1>
+        <div class="header-container">
+            <div class="logo">Stats Tracker</div>
             <nav>
-                <ul>
-                    <li><a href="" onclick="homePage()">Home</a></li>
-                    <li><a href="pages/playersPage.html" onclick="playersPage()">Players</a></li>
-                    <li><a href="pages/logInPage.html" onclick="logInPage()">Log In</a></li>
+                <ul class="nav-links">
+                    <li><a href="#home">Sākums</a></li>
+                    <li><a href="#about">Par mums</a></li>
+                    <li class="dropdown">
+                        <a href="#services">Pakalpojumi ▼</a>
+                        <div class="dropdown-content">
+                            <a href="#stats">Statistikas ievadīšana</a>
+                            <a href="#analysis">Datu analīze</a>
+                            <a href="#reports">Atskaites</a>
+                            <a href="#export">Datu eksports</a>
+                        </div>
+                    </li>
+                    <li><a href="#contact">Kontakti</a></li>
                 </ul>
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌓</button>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="container">
-            <h1>Statistics Tracker</h1>
-            <h2>Trekeris, kas ļauj jums sekot līdzi savu spēlētāju statistikai</h2>
-            
-            <div class="cards-container">
-                <div class="card">
-                    <img src="https://via.placeholder.com/300x200/2c5aa0/ffffff?text=Futbols" alt="Futbols">
-                    <h3>Futbols</h3>
-                    <p>Seko līdzi futbola komandas statistikai, vārtu guvējiem un spēlētāju rezultātiem.</p>
-                    <button class="card-btn">Skatīt statistiku</button>
+        <section class="hero" id="home">
+            <h1>Universāls Sporta Statistikas Apkopotājs</h1>
+            <p>Profesionāla platforma spēļu statistikas ievadīšanai, uzglabāšanai un analīzei. Vienkārši, ātri un efektīvi!</p>
+        </section>
+
+        <div class="cards-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400" alt="Basketbols" class="card-image">
+                <div class="card-content">
+                    <h3>🏀 Basketbols</h3>
+                    <p>Ievadiet un analizējiet basketbola spēļu statistiku: punkti, piespēles, atlēkušās bumbas, bloķējumi un vairāk.</p>
+                    <button class="card-btn" onclick="openModal('Basketbols')">Uzzināt vairāk</button>
                 </div>
-                
-                <div class="card">
-                    <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=Florbols" alt="Florbols">
-                    <h3>Florbols</h3>
-                    <p>Uzskaiti florbola spēļu rezultātus, individuālo sniegumu un komandas progresu.</p>
-                    <button class="card-btn">Skatīt statistiku</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400" alt="Futbols" class="card-image">
+                <div class="card-content">
+                    <h3>⚽ Futbols</h3>
+                    <p>Uzglabājiet futbola spēļu datus: vārti, piespēles, precizitāte, aizsardzības darbības un komandas statistika.</p>
+                    <button class="card-btn" onclick="openModal('Futbols')">Uzzināt vairāk</button>
                 </div>
-                
-                <div class="card">
-                    <img src="https://via.placeholder.com/300x200/27ae60/ffffff?text=Hokejs" alt="Hokejs">
-                    <h3>Hokejs</h3>
-                    <p>Analizē hokeja komandas sniegumu, vārtsargu efektivitāti un spēlētāju punktus.</p>
-                    <button class="card-btn">Skatīt statistiku</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=400" alt="Volejbols" class="card-image">
+                <div class="card-content">
+                    <h3>🏐 Volejbols</h3>
+                    <p>Reģistrējiet volejbola statistiku: servēšana, uzbrukumi, bloķi, uzkritieni un seta rezultāti.</p>
+                    <button class="card-btn" onclick="openModal('Volejbols')">Uzzināt vairāk</button>
                 </div>
             </div>
         </div>
+
+        <aside>
+            <h2>📈 Jaunākie raksti</h2>
+            <ul>
+                <li>Kā efektīvi analizēt basketbola statistiku</li>
+                <li>SQL datubāzes optimizācija sporta datiem</li>
+                <li>Top 10 statistikas rādītāji futbolā</li>
+                <li>Kā izveidot profesionālas sporta atskaites</li>
+                <li>Datu vizualizācija sporta analītikā</li>
+            </ul>
+        </aside>
     </main>
 
-    <aside>
-        <h3>Sporta veidi</h3>
-        <ul>
-            <li>Futbols</li>
-            <li>Florbols</li>
-            <li>Hokejs</li>
-            <li>Basketbols</li>
-        </ul>
-    </aside>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Statistics Tracker</p>
+    <footer id="contact">
+        <div class="footer-content">
+            <p>&copy; 2025 Stats Tracker - Universāls Sporta Statistikas Apkopotājs</p>
+            <p>Visi dati tiek droši uzglabāti SQL datubāzēs</p>
             <div class="social-links">
-                <a href="#">Noteikumi</a>
-                <a href="#">Privātums</a>
-                <a href="#">Palīdzība</a>
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">💼</a>
             </div>
         </div>
     </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-text"></p>
+            <img id="modal-img" src="" alt="" style="width: 100%; border-radius: 10px; margin: 1rem 0;">
+            <p>Šī platforma ļauj jums:</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem;">
+                <li>✓ Ievadīt detalizētu spēļu statistiku</li>
+                <li>✓ Uzglabāt datus drošās SQL datubāzēs</li>
+                <li>✓ Analizēt sniegumu ar vizualizācijām</li>
+                <li>✓ Eksportēt atskaites dažādos formātos</li>
+                <li>✓ Salīdzināt spēlētāju statistiku</li>
+            </ul>
+        </div>
+    </div>
 
     <script src="src/js/script.js"></script>
 </body>
