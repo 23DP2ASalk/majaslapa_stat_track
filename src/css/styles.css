@@ -1,170 +1,117 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StatsPro - Universāls Sporta Statistikas Apkopotājs</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Stats Tracker</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Sākums</a></li>
+                    <li><a href="#about">Par mums</a></li>
+                    <li class="dropdown">
+                        <a href="#services">Pakalpojumi ▼</a>
+                        <div class="dropdown-content">
+                            <a href="#stats">Statistikas ievadīšana</a>
+                            <a href="#analysis">Datu analīze</a>
+                            <a href="#reports">Atskaites</a>
+                            <a href="#export">Datu eksports</a>
+                        </div>
+                    </li>
+                    <li><a href="#contact">Kontakti</a></li>
+                </ul>
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌓</button>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-}
+    <main>
+        <section class="hero" id="home">
+            <h1>Universāls Sporta Statistikas Apkopotājs</h1>
+            <p>Profesionāla platforma spēļu statistikas ievadīšanai, uzglabāšanai un analīzei. Vienkārši, ātri un efektīvi!</p>
+        </section>
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+        <div class="cards-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400" alt="Basketbols" class="card-image">
+                <div class="card-content">
+                    <h3>🏀 Basketbols</h3>
+                    <p>Ievadiet un analizējiet basketbola spēļu statistiku: punkti, piespēles, atlēkušās bumbas, bloķējumi un vairāk.</p>
+                    <button class="card-btn" onclick="openModal('Basketbols')">Uzzināt vairāk</button>
+                </div>
+            </div>
 
-header,
-footer {
-    background: #333;
-    color: white;
-    padding: 1rem 0;
-}
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400" alt="Futbols" class="card-image">
+                <div class="card-content">
+                    <h3>⚽ Futbols</h3>
+                    <p>Uzglabājiet futbola spēļu datus: vārti, piespēles, precizitāte, aizsardzības darbības un komandas statistika.</p>
+                    <button class="card-btn" onclick="openModal('Futbols')">Uzzināt vairāk</button>
+                </div>
+            </div>
 
-header .container,
-footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=400" alt="Volejbols" class="card-image">
+                <div class="card-content">
+                    <h3>🏐 Volejbols</h3>
+                    <p>Reģistrējiet volejbola statistiku: servēšana, uzbrukumi, bloķi, uzkritieni un seta rezultāti.</p>
+                    <button class="card-btn" onclick="openModal('Volejbols')">Uzzināt vairāk</button>
+                </div>
+            </div>
+        </div>
 
-nav ul,
-aside ul {
-    list-style: none;
-}
+        <aside>
+            <h2>📈 Jaunākie raksti</h2>
+            <ul>
+                <li>Kā efektīvi analizēt basketbola statistiku</li>
+                <li>SQL datubāzes optimizācija sporta datiem</li>
+                <li>Top 10 statistikas rādītāji futbolā</li>
+                <li>Kā izveidot profesionālas sporta atskaites</li>
+                <li>Datu vizualizācija sporta analītikā</li>
+            </ul>
+        </aside>
+    </main>
 
-nav ul {
-    display: flex;
-    gap: 1rem;
-}
+    <footer id="contact">
+        <div class="footer-content">
+            <p>&copy; 2025 Stats Tracker - Universāls Sporta Statistikas Apkopotājs</p>
+            <p>Visi dati tiek droši uzglabāti SQL datubāzēs</p>
+            <div class="social-links">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">💼</a>
+            </div>
+        </div>
+    </footer>
 
-nav a,
-.social-links a {
-    color: white;
-    text-decoration: none;
-}
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-text"></p>
+            <img id="modal-img" src="" alt="" style="width: 100%; border-radius: 10px; margin: 1rem 0;">
+            <p>Šī platforma ļauj jums:</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem;">
+                <li>✓ Ievadīt detalizētu spēļu statistiku</li>
+                <li>✓ Uzglabāt datus drošās SQL datubāzēs</li>
+                <li>✓ Analizēt sniegumu ar vizualizācijām</li>
+                <li>✓ Eksportēt atskaites dažādos formātos</li>
+                <li>✓ Salīdzināt spēlētāju statistiku</li>
+            </ul>
+        </div>
+    </div>
 
-main {
-    padding: 2rem 0;
-}
-
-main h1,
-main h2,
-.card h3 {
-    margin-bottom: 1rem;
-}
-
-main p,
-.card p {
-    margin-bottom: 1rem;
-}
-
-main img,
-.card img {
-    max-width: 100%;
-    height: auto;
-}
-
-.cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    max-width: 300px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-}
-
-.card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.card h3 {
-    color: inherit;
-    font-size: 1.5rem;
-}
-
-.card p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.card-btn {
-    background: linear-gradient(45deg, #2c5aa0, #3498db);
-    color: white;
-    border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.card-btn:hover {
-    background: linear-gradient(45deg, #1e3d6f, #2980b9);
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(44, 90, 160, 0.4);
-}
-
-.card-btn:active {
-    transform: scale(0.98);
-}
-
-aside {
-    background: #f4f4f4;
-    padding: 2rem;
-    margin: 2rem 0;
-}
-
-aside ul {
-    margin-top: 1rem;
-}
-
-aside li {
-    padding: 0.5rem 0;
-}
-
-footer {
-    padding: 2rem 0;
-}
-
-.social-links a {
-    margin-left: 1rem;
-}
-
-@media (max-width: 768px) {
-    .cards-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card {
-        max-width: 100%;
-    }
-    
-    footer .container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-}
+    <script src="src/js/script.js"></script>
+</body>
+</html>
